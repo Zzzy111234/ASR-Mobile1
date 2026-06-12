@@ -79,17 +79,25 @@ jobs:
           name: ASR-Mobile-release
           path: ${{ steps.apk_path.outputs.APK }}
 
+      - name: Delete old latest tag and release
+        run: |
+          gh release delete latest --yes --cleanup-tag 2>/dev/null || true
+          git push origin :refs/tags/latest 2>/dev/null || true
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: Release ${{ github.ref_name }}-${{ github.sha }}
-          tag_name: release-${{ github.run_number }}
+          name: Latest Release
+          tag_name: latest
           files: ${{ steps.apk_path.outputs.APK }}
           body: |
             Automated build from commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}).
 
-            **Build details:**
-            - Branch: `${{ github.ref_name }}`
-            - Run number: ${{ github.run_number }}
+            | Detail | Value |
+            |---|---|
+            | Branch | `${{ github.ref_name }}` |
+            | Run | #${{ github.run_number }} |
           draft: false
           prerelease: false
