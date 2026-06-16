@@ -1,0 +1,16 @@
+# ASR-Mobile evaluation dependencies
+# ──────────────────────────────────────────────────────────────
+# NOTE: torch must be installed SEPARATELY matching your CUDA version.
+#       e.g.  pip install torch --index-url https://download.pytorch.org/whl/cu128
+#
+# Install:
+#   pip install -r scripts/eval/requirements.txt
+# ──────────────────────────────────────────────────────────────
+
+transformers>=4.35.0
+datasets>=2.16
+jiwer>=3.0.0
+numpy>=1.24
+matplotlib>=3.7
+tqdm>=4.65
+soundfile>=0.12.0

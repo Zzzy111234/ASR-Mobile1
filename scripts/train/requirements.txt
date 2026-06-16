@@ -1,0 +1,28 @@
+# ASR-Mobile training dependencies
+# ──────────────────────────────────────────────────────────────
+#  NOTE: torch / torchaudio must be installed SEPARATELY from
+#        the PyTorch warehouse because they are CUDA-version-specific.
+#        Do NOT install them from this file.
+#
+#  Full install steps for mainland China:
+#
+#    # Step 1: torch + torchaudio (match your CUDA version!)
+#    pip install torch torchaudio \
+#        --index-url https://download.pytorch.org/whl/cu128 \
+#        --no-cache-dir
+#
+#    # Step 2: everything else
+#    pip install -r scripts/train/requirements.txt \
+#        --no-cache-dir
+# ──────────────────────────────────────────────────────────────
+
+transformers>=4.35.0,<5.0
+datasets>=2.16,<3.0
+peft>=0.7.0
+accelerate>=0.25.0
+jiwer>=3.0.0
+soundfile>=0.12.0
+librosa>=0.10.0
+evaluate>=0.4.0
+tensorboard>=2.14.0
+numpy>=1.24
